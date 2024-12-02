@@ -25,7 +25,7 @@ async def list_students(
 
     students = list(db.students.find(query))
     return [
-        {"id": str(student["_id"]), "name": student["name"], "age": student["age"], "address": student["address"]}
+        {"_id": str(student["_id"]), "name": student["name"], "age": student["age"], "address": student["address"]}
         for student in students
     ]
 
@@ -34,7 +34,7 @@ async def fetch_student(id: str):
     student = db.students.find_one({"_id": ObjectId(id)})
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
-    return {"id": str(student["_id"]), "name": student["name"], "age": student["age"], "address": student["address"]}
+    return {"_id": str(student["_id"]), "name": student["name"], "age": student["age"], "address": student["address"]}
 
 @router.patch("/{id}", status_code=204)
 async def update_student(id: str, student: StudentSchema):
