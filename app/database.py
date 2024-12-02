@@ -7,5 +7,5 @@ load_dotenv()
 
 
 MONGO_URL=os.getenv("MONGO_URL")
-client = MongoClient(os.getenv(MONGO_URL))
+client = MongoClient(MONGO_URL)
 db = client["student_db"]
